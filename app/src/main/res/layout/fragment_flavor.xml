@@ -51,41 +51,49 @@
                     android:id="@+id/vanilla"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(@string/vanilla)}"
-                    android:onClick="@{() -> viewModel.setFlavor(@string/vanilla)}"
-                    android:text="@string/vanilla" />
+                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[0].name)}"
+                    android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[0])}"
+                    android:text="@{viewModel.flavorOptions[0].name}" />
 
                 <RadioButton
                     android:id="@+id/chocolate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(@string/chocolate)}"
-                    android:onClick="@{() -> viewModel.setFlavor(@string/chocolate)}"
-                    android:text="@string/chocolate" />
+                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[1].name)}"
+                    android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[1])}"
+                    android:text="@{viewModel.flavorOptions[1].name}" />
 
                 <RadioButton
                     android:id="@+id/red_velvet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(@string/red_velvet)}"
-                    android:onClick="@{() -> viewModel.setFlavor(@string/red_velvet)}"
-                    android:text="@string/red_velvet" />
+                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[2].name)}"
+                    android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[2])}"
+                    android:text="@{viewModel.flavorOptions[2].name}" />
 
                 <RadioButton
                     android:id="@+id/salted_caramel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(@string/salted_caramel)}"
-                    android:onClick="@{() -> viewModel.setFlavor(@string/salted_caramel)}"
-                    android:text="@string/salted_caramel" />
+                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[3].name)}"
+                    android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[3])}"
+                    android:text="@{viewModel.flavorOptions[3].name}" />
 
                 <RadioButton
                     android:id="@+id/coffee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(@string/coffee)}"
-                    android:onClick="@{() -> viewModel.setFlavor(@string/coffee)}"
-                    android:text="@string/coffee" />
+                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[4].name)}"
+                    android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[4])}"
+                    android:text="@{viewModel.flavorOptions[4].name}" />
+
+                <RadioButton
+                    android:id="@+id/splecialFlavor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[5].name)}"
+                    android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[5])}"
+                    android:text="@{viewModel.flavorOptions[5].name}" />
             </RadioGroup>
 
             <View

@@ -54,6 +54,7 @@
                     android:checked="@{viewModel.date.equals(viewModel.dateOptions[0])}"
                     android:onClick="@{() -> viewModel.setDate(viewModel.dateOptions[0])}"
                     android:text="@{viewModel.dateOptions[0]}"
+                    android:enabled="@{viewModel.flavorAllowPickupToday}"
                     tools:text="Thursday" />
 
                 <RadioButton
