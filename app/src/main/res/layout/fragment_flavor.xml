@@ -51,7 +51,7 @@
                     android:id="@+id/vanilla"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[0].name)}"
+                    android:checked="@{viewModel.isSame(viewModel.flavorOptions[0])}"
                     android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[0])}"
                     android:text="@{viewModel.flavorOptions[0].name}" />
 
@@ -59,7 +59,7 @@
                     android:id="@+id/chocolate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[1].name)}"
+                    android:checked="@{viewModel.isSame(viewModel.flavorOptions[1])}"
                     android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[1])}"
                     android:text="@{viewModel.flavorOptions[1].name}" />
 
@@ -67,7 +67,7 @@
                     android:id="@+id/red_velvet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[2].name)}"
+                    android:checked="@{viewModel.isSame(viewModel.flavorOptions[2])}"
                     android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[2])}"
                     android:text="@{viewModel.flavorOptions[2].name}" />
 
@@ -75,7 +75,7 @@
                     android:id="@+id/salted_caramel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[3].name)}"
+                    android:checked="@{viewModel.isSame(viewModel.flavorOptions[3])}"
                     android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[3])}"
                     android:text="@{viewModel.flavorOptions[3].name}" />
 
@@ -83,7 +83,7 @@
                     android:id="@+id/coffee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[4].name)}"
+                    android:checked="@{viewModel.isSame(viewModel.flavorOptions[4])}"
                     android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[4])}"
                     android:text="@{viewModel.flavorOptions[4].name}" />
 
@@ -91,7 +91,7 @@
                     android:id="@+id/splecialFlavor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="@{viewModel.flavor.equals(viewModel.flavorOptions[5].name)}"
+                    android:checked="@{viewModel.isSame(viewModel.flavorOptions[5])}"
                     android:onClick="@{() -> viewModel.setFlavor(viewModel.flavorOptions[5])}"
                     android:text="@{viewModel.flavorOptions[5].name}" />
             </RadioGroup>

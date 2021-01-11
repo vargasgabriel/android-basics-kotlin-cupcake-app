@@ -1,5 +1,6 @@
 package com.example.cupcake.model
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -17,8 +18,8 @@ class OrderViewModel : ViewModel() {
     private val _quantity = MutableLiveData<Int>()
     val quantity: LiveData<Int> = _quantity
 
-    private val _flavor = MutableLiveData<Flavor>()
-    val flavor: LiveData<Flavor> = _flavor
+    private val _flavors = MutableLiveData<MutableList<Flavor>>(mutableListOf())
+    val flavors: LiveData<MutableList<Flavor>> = _flavors
 
     private val _date = MutableLiveData<String>()
     val date: LiveData<String> = _date
@@ -31,6 +32,8 @@ class OrderViewModel : ViewModel() {
     val dateOptions = getPickupOptions()
     val flavorOptions = getFlavors()
 
+    var selectMultFlavors : Boolean = false
+
     init {
         resetOrder()
     }
@@ -41,7 +44,26 @@ class OrderViewModel : ViewModel() {
     }
 
     fun setFlavor(desiredFlavor: Flavor) {
-        _flavor.value = desiredFlavor
+        if (selectMultFlavors) {
+            if (_flavors.value?.contains(desiredFlavor) == true) {
+                removeFlavor(desiredFlavor)
+            } else addFlavor(desiredFlavor)
+        } else {
+
+            if (_flavors.value?.isNotEmpty() == true)
+                removeFlavor(desiredFlavor)
+
+            addFlavor(desiredFlavor)
+
+        }
+    }
+
+    private fun addFlavor(desiredFlavor: Flavor) {
+        _flavors.value?.add(desiredFlavor)
+    }
+
+    private fun removeFlavor(desiredFlavor: Flavor) {
+        _flavors.value?.remove(desiredFlavor)
     }
 
     fun setDate(pickupDate: String) {
@@ -50,11 +72,13 @@ class OrderViewModel : ViewModel() {
     }
 
     fun flavorAllowPickupToday(): Boolean {
-        val isAllowed = _flavor.value != flavorOptions[5]
-        if (!isAllowed)
+        val specialFlavor = flavorOptions[5]
+        val hasSpecialFlavor = _flavors.value?.contains(specialFlavor) == true
+
+        if (hasSpecialFlavor)
             setDate(dateOptions[1])
 
-        return isAllowed
+        return !hasSpecialFlavor
     }
 
     private fun getPickupOptions(): List<String> {
@@ -82,7 +106,7 @@ class OrderViewModel : ViewModel() {
 
     fun resetOrder() {
         _quantity.value = 0
-        _flavor.value = flavorOptions[0]
+//        _flavor.value?.add(flavorOptions[0])
         _date.value = dateOptions[0]
         _price.value = 0.0
     }
@@ -93,6 +117,10 @@ class OrderViewModel : ViewModel() {
             calculatedPrice += PRICE_FOR_SAME_DAY_PICKUP
         }
         _price.value = calculatedPrice
+    }
+
+    fun isSame(otherFlavor: Flavor) : Boolean {
+        return _flavors.value?.contains(otherFlavor) == true
     }
 
     /*
