@@ -80,14 +80,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/flavor" />
 
-                <TextView
-                    android:id="@+id/flavor"
-                    style="@style/Widget.Cupcake.TextView.OrderSummary"
-                    android:layout_width="wrap_content"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/flavors"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/order_summary_margin"
-                    android:text="@{viewModel.flavor.name}"
-                    tools:text="Chocolate" />
+                    android:scrollbars="none"
+                    tools:listitem="@layout/summary_flavor" />
 
                 <View
                     android:id="@+id/divider2"

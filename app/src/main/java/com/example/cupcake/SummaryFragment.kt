@@ -23,6 +23,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cupcake.databinding.FragmentSummaryBinding
 import com.example.cupcake.model.OrderViewModel
 
@@ -35,27 +37,36 @@ class SummaryFragment : Fragment() {
     // Binding object instance corresponding to the fragment_summary.xml layout
     // This property is non-null between the onCreateView() and onDestroyView() lifecycle callbacks,
     // when the view hierarchy is attached to the fragment.
-    private var binding: FragmentSummaryBinding? = null
+    private var _binding: FragmentSummaryBinding? = null
+
+    private val binding get() = _binding!!
 
     private val sharedViewModel: OrderViewModel by activityViewModels()
+
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val fragmentBinding = FragmentSummaryBinding.inflate(inflater, container, false)
-        binding = fragmentBinding
+        _binding = fragmentBinding
         return fragmentBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.apply {
+        binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = sharedViewModel
             summaryFragment = this@SummaryFragment
         }
+
+        recyclerView = binding.flavors
+
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = FlavorAdapter(this.requireContext(), sharedViewModel)
     }
 
     /**
@@ -63,10 +74,12 @@ class SummaryFragment : Fragment() {
      */
     fun sendOrder() {
         val numberOfCupcakes = sharedViewModel.quantity.value ?: 0
+        val flavorsOrder = sharedViewModel.flavors.value?.joinToString(", ") { it -> getString(it.name) }
+
         val orderSummary = getString(
             R.string.order_details,
             resources.getQuantityString(R.plurals.cupcakes, numberOfCupcakes, numberOfCupcakes),
-            sharedViewModel.flavor.value.toString(),
+            flavorsOrder,
             sharedViewModel.date.value.toString(),
             sharedViewModel.price.value.toString()
         )
@@ -92,6 +105,6 @@ class SummaryFragment : Fragment() {
      */
     override fun onDestroyView() {
         super.onDestroyView()
-        binding = null
+        _binding = null
     }
 }
