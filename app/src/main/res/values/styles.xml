@@ -55,4 +55,18 @@
     <style name="Widget.Cupcake.Divider" parent="">
         <item name="android:background">?attr/dividerHorizontal</item>
     </style>
+
+    <!-- Check box with counter widget style -->
+
+    <style name="Widget.CheckBoxWithCounter.ButtonLeft" parent="">
+        <item name="icon">@drawable/ic_baseline_minus_24</item>
+        <item name="backgroundColor">@color/pink_400</item>
+    </style>
+
+    <style name="Widget.CheckBoxWithCounter.ButtonRight" parent="">
+        <item name="icon">@drawable/ic_baseline_add_24</item>
+        <item name="backgroundColor">@color/purple_700</item>
+    </style>
+
+
 </resources>

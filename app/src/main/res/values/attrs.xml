@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CheckBoxWithCounterWidget">
+        <attr name="checkBoxTheme" format="reference" />
+        <attr name="checkBoxText" format="string" />
+        <attr name="counterText" format="integer" />
+        <attr name="maxCounter" format="integer" />
+        <attr name="onMaxCounterListener" format="string" />
+    </declare-styleable>
+
+</resources>
